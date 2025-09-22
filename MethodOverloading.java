@@ -1,21 +1,26 @@
-import java.lang.*;
-public class MethodOverloading
+
+class Method
 {
 	
-	print(int n)
+	public void prints(int n)
 	{
 		System.out.println("int : "+n);	
 	}
 	
-	print(String s)
+	public void prints(String s)
 	{
 		System.out.print("String :"+s);
 	}
 	
-	public static void main(String args[])
+
+}
+
+public class MethodOverloading
+{
+	public static void main(String s[])
 	{
-		print(25);
-		print("hello");
+		Method m1=new  Method();
+		m1.prints(25);
+		m1.prints("welcome to java");
 	}
 }
-ṇ
