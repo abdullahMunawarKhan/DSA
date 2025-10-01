@@ -29,7 +29,7 @@ class Call
 			rear=(rear+1)%maxSize;
 			callListID[rear]=customerID;
 			callListTime[rear]=callTime;
-			System.out.println(callListID[front]+" is added ");
+			System.out.println(callListID[rear]+" is added ");
 			count++;
 		}
 	}
