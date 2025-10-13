@@ -67,7 +67,7 @@ class Call
 	}
 }
 
-class CallDemo
+class CallCentreQueue
 {
 	public static void main(String s[])
 	{

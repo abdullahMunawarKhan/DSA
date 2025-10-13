@@ -71,7 +71,7 @@ class Event
 	
 }
 
-class EventDemo
+class EventQueue
 {
 
 	public static void main(String s[])
