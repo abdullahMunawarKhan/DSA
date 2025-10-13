@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 // Student class to represent individual student records
@@ -271,7 +270,7 @@ class StudentManagement {
     }
 }
 
-// Main class with menu-driven interface
+// Main class with menu-driven interface - uses nextLine()+parse to avoid Scanner buffer issues
 public class StudentRecordSystem {
     public static void main(String[] args) {
         StudentManagement sm = new StudentManagement();
@@ -293,77 +292,80 @@ public class StudentRecordSystem {
             System.out.println("0. Exit");
             System.out.print("Enter your choice: ");
 
-            choice = scanner.nextInt();
+            try {
+                choice = Integer.parseInt(scanner.nextLine()); // read line and parse to avoid newline issues [web:22][web:24]
 
-            switch (choice) {
-                case 1:
-                    System.out.print("Enter Roll Number: ");
-                    int rollNo = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
-                    System.out.print("Enter Name: ");
-                    String name = scanner.nextLine();
-                    System.out.print("Enter Marks: ");
-                    int marks = scanner.nextInt();
-                    sm.addStudent(rollNo, name, marks);
-                    break;
+                switch (choice) {
+                    case 1:
+                        System.out.print("Enter Roll Number: ");
+                        int rollNo = Integer.parseInt(scanner.nextLine()); // parse from full line [web:23]
+                        System.out.print("Enter Name: ");
+                        String name = scanner.nextLine();
+                        System.out.print("Enter Marks: ");
+                        int marks = Integer.parseInt(scanner.nextLine());
+                        sm.addStudent(rollNo, name, marks);
+                        break;
 
-                case 2:
-                    System.out.print("Enter Roll Number to delete: ");
-                    int delRollNo = scanner.nextInt();
-                    sm.deleteStudent(delRollNo);
-                    break;
+                    case 2:
+                        System.out.print("Enter Roll Number to delete: ");
+                        int delRollNo = Integer.parseInt(scanner.nextLine());
+                        sm.deleteStudent(delRollNo);
+                        break;
 
-                case 3:
-                    System.out.print("Enter Roll Number to update: ");
-                    int updateRollNo = scanner.nextInt();
-                    scanner.nextLine(); // Consume newline
-                    System.out.print("Enter new Name: ");
-                    String newName = scanner.nextLine();
-                    System.out.print("Enter new Marks: ");
-                    int newMarks = scanner.nextInt();
-                    sm.updateStudent(updateRollNo, newName, newMarks);
-                    break;
+                    case 3:
+                        System.out.print("Enter Roll Number to update: ");
+                        int updateRollNo = Integer.parseInt(scanner.nextLine());
+                        System.out.print("Enter new Name: ");
+                        String newName = scanner.nextLine();
+                        System.out.print("Enter new Marks: ");
+                        int newMarks = Integer.parseInt(scanner.nextLine());
+                        sm.updateStudent(updateRollNo, newName, newMarks);
+                        break;
 
-                case 4:
-                    System.out.print("Enter Roll Number to search: ");
-                    int searchRollNo = scanner.nextInt();
-                    sm.displaySearchResult(searchRollNo);
-                    break;
+                    case 4:
+                        System.out.print("Enter Roll Number to search: ");
+                        int searchRollNo = Integer.parseInt(scanner.nextLine());
+                        sm.displaySearchResult(searchRollNo);
+                        break;
 
-                case 5:
-                    sm.displayAllStudents();
-                    break;
+                    case 5:
+                        sm.displayAllStudents();
+                        break;
 
-                case 6:
-                    sm.sortByRollNoAsc();
-                    sm.displayAllStudents();
-                    break;
+                    case 6:
+                        sm.sortByRollNoAsc();
+                        sm.displayAllStudents();
+                        break;
 
-                case 7:
-                    sm.sortByRollNoDesc();
-                    sm.displayAllStudents();
-                    break;
+                    case 7:
+                        sm.sortByRollNoDesc();
+                        sm.displayAllStudents();
+                        break;
 
-                case 8:
-                    sm.sortByMarksAsc();
-                    sm.displayAllStudents();
-                    break;
+                    case 8:
+                        sm.sortByMarksAsc();
+                        sm.displayAllStudents();
+                        break;
 
-                case 9:
-                    sm.sortByMarksDesc();
-                    sm.displayAllStudents();
-                    break;
+                    case 9:
+                        sm.sortByMarksDesc();
+                        sm.displayAllStudents();
+                        break;
 
-                case 10:
-                    System.out.println("Total number of students: " + sm.getStudentCount());
-                    break;
+                    case 10:
+                        System.out.println("Total number of students: " + sm.getStudentCount());
+                        break;
 
-                case 0:
-                    System.out.println("Thank you for using Student Record Management System!");
-                    break;
+                    case 0:
+                        System.out.println("Thank you for using Student Record Management System!");
+                        break;
 
-                default:
-                    System.out.println("Invalid choice! Please try again.");
+                    default:
+                        System.out.println("Invalid choice! Please try again.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a valid number.");
+                choice = -1; // Continue loop
             }
         } while (choice != 0);
 
