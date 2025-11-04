@@ -1,5 +1,7 @@
 import java.util.*;
 
+import DSA_EDC.Arrays;
+
 public class QuickSort
 {
 
